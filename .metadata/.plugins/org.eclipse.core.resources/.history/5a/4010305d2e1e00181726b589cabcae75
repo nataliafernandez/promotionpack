@@ -1,0 +1,7 @@
+Feature:entries
+	Scenario:successful login
+		Given my entries
+		When select an entry
+		Then i see the form
+		
+		

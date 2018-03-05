@@ -1,0 +1,7 @@
+Feature:entries
+	Scenario:select an entry
+		Given my entries
+		When i select the entry "test title"
+		Then the entry form should appear
+		
+		

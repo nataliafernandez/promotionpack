@@ -1,0 +1,41 @@
+package com.effectivetesting.promotionpackage;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;;
+
+public class EntriesStepDef {
+	private String entryname;
+	WebDriver driver = Browser.getDriver();
+
+	
+	@Given("^my entries$")
+	public void my_entries() throws Exception {
+		WebDriver driver = Browser.getDriver();
+		driver.get("http://0.0.0.0:5000/login/");
+		Thread.sleep(3000);
+		driver.findElement(By.id("email")).sendKeys("admin1@gmail.com");
+		driver.findElement(By.id("password")).sendKeys("adim1");
+		driver.findElement(By.id("btn-submit")).click();
+		driver.findElement(By.id("blog")).click();
+	}
+
+	@When("^i select the entry \"([^\"]*)\"$")
+	public void i_select_the_entry(String arg1) throws Exception {
+		WebDriver driver = Browser.getDriver();
+		entryname = arg1;
+		driver.findElement(By.partialLinkText(entryname)).click();
+		Thread.sleep(3000);
+	}
+
+	@Then("^the \"([^\"]*)\" form should appear$")
+	public void the_entry_form_should_appear(String entryname) throws Exception {
+		WebDriver driver = Browser.getDriver();
+		Assert.assertEquals(driver.findElement(By.cssSelector("#content_title > h1")).getText(), entryname);
+	}
+	
+}

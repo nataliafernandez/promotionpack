@@ -1,0 +1,62 @@
+package com.effectivetesting.promotionpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class FormStepDef {
+	private WebDriver driver;
+	
+	@Before
+	public void beforeClass(){
+		System.setProperty("webdriver.chrome.driver", "/home/natalia/chromedriver");
+		driver = new ChromeDriver();
+
+		  
+	}
+	
+	@After
+	public void afterClass(){
+		driver.close();
+		  
+	}
+
+	
+	@Given("^my entry form$")
+	public void my_entry_form() throws Exception {
+		driver.get("http://0.0.0.0:5000/login/");
+		driver.findElement(By.id("email")).sendKeys("admin1@gmail.com");
+		driver.findElement(By.id("password")).sendKeys("adim1");
+		driver.findElement(By.id("btn-submit")).click();
+		driver.get("http://0.0.0.0:5000/entries/first-entry/");
+		
+	}
+
+	@When("^i fill the field name\"([^\"]*)\" email\"([^\"]*)\" URL\"([^\"]*)\" comment\"([^\"]*)\"$")
+	public void i_fill_the_field_name_email_url_comment(String arg1, String arg2, String arg3, String arg4) throws Exception {
+		driver.findElement(By.id("name")).sendKeys(arg1);
+		driver.findElement(By.id("email")).sendKeys(arg2);
+		driver.findElement(By.id("url")).sendKeys(arg3);
+		driver.findElement(By.id("body")).sendKeys(arg4);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,550)", "");
+	}
+
+	@Then("^i submit the form and the alert \"([^\"]*)\" is shown$")
+	public void i_submit_the_form_and_the_alert_is_shown(String arg1) throws Exception {
+		driver.findElement(By.className("btn-default")).click();
+		//Thread.sleep(1000);
+		Assert.assertEquals(driver.findElement(By.cssSelector(".alert-dismissable")).getText(), arg1);
+		//driver.findElement(By.className("close")).click();
+		//driver.close();
+	}
+	
+}

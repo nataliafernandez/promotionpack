@@ -1,0 +1,46 @@
+package com.effectivetesting.promotionpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class EntriesStepDef {
+	private WebDriver driver;
+	private String entryname;
+	
+	@Before
+	public void setup(){
+		System.setProperty("webdriver.chrome.driver", "/home/natalia/chromedriver");
+  
+	}
+	
+	@Given("^my entries$")
+	public void my_entries() throws Exception {
+		driver = new ChromeDriver();
+		driver.get("http://0.0.0.0:5000/login/");
+		driver.findElement(By.id("email")).sendKeys("admin1@gmail.com");
+		driver.findElement(By.id("password")).sendKeys("adim1");
+		driver.findElement(By.id("btn-submit")).click();
+		driver.findElement(By.id("blog")).click();
+	}
+
+	@When("^i select the entry \"([^\"]*)\"$")
+	public void i_select_the_entry(String arg1) throws Exception {
+		entryname = arg1;
+		driver.findElement(By.partialLinkText(entryname)).click();
+	}
+
+	@Then("^the \"([^\"]*)\" form should appear$")
+	public void the_entry_form_should_appear(String entryname) throws Exception {
+	
+		Assert.assertEquals(driver.findElement(By.cssSelector("#content_title > h1")).getText(), entryname);
+		driver.close();
+	}
+	
+}

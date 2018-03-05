@@ -1,0 +1,21 @@
+package com.effectivetesting.promotionpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
+public class FormPage {
+WebDriver driver = Browser.getDriver();
+	
+	public FormPage fillForm (String name, String email, String url, String body){
+		
+		driver.findElement(By.id("name")).sendKeys(name);
+		driver.findElement(By.id("email")).sendKeys(email);
+		driver.findElement(By.id("url")).sendKeys(url);
+		driver.findElement(By.id("body")).sendKeys(body);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,550)", "");
+		driver.findElement(By.className("btn-default")).click();
+		return this;
+	}
+}

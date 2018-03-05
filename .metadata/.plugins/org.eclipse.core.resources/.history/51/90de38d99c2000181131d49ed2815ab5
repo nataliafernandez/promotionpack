@@ -1,0 +1,36 @@
+package com.effectivetesting.promotionpackage;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+
+// TODO elegantize this
+public class Browser {
+	private static WebDriver driver;
+	private static int i;
+	private static int x;
+
+	
+	@Before
+	public static void beforeLogin() {
+		System.out.println("bef " + ++i);
+		System.setProperty("webdriver.chrome.driver", "/home/natalia/chromedriver");
+		//WebDriver driver = Browser.getDriver();
+		driver = new ChromeDriver();
+		System.out.println("bef " + i + " END");
+	}
+
+	@After
+	public static void afterLogin() {
+		System.out.println("aft " + ++x);
+		driver.close();
+		System.out.println("aft " + x + " END");
+	}
+	
+	public static WebDriver getDriver() {
+		return driver; 
+	}
+
+}

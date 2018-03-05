@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.effectivetesting.promotionpackage.AppTest&apos; to &apos;CucumberRunner&apos;&#x0A;- Original project: &apos;promotionpackage&apos;&#x0A;- Original element: &apos;com.effectivetesting.promotionpackage.AppTest&apos;&#x0A;- Renamed element: &apos;com.effectivetesting.promotionpackage.CucumberRunner&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;AppTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/test\/java&lt;com.effectivetesting.promotionpackage{AppTest.java[AppTest" matchStrategy="1" name="CucumberRunner" qualified="false" references="true" similarDeclarations="false" stamp="1518200548790" textual="false" version="1.0"/>
+</session>

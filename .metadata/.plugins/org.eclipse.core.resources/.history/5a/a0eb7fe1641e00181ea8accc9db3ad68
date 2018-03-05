@@ -1,0 +1,7 @@
+package com.effectivetesting.promotionpackage;
+
+import cucumber.api.java.en.Then;
+
+public class Browser {
+
+}

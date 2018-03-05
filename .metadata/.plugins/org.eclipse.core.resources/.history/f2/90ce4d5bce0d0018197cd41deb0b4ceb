@@ -1,0 +1,27 @@
+package com.effectivetesting.promotionpackage;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class LoginStepDef {
+
+	@Given("^my credentials \"([^\"]*)\" with password \"([^\"]*)\"$")
+	public void my_credentials_with_password(String arg1, String arg2) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^i log into the application$")
+	public void i_log_into_the_application() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^the message \"([^\"]*)\" should appear$")
+	public void the_message_should_appear(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+}

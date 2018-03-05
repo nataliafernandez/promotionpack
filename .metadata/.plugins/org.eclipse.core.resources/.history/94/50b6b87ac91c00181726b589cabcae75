@@ -1,0 +1,49 @@
+package com.effectivetesting.promotionpackage;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import cucumber.api.PendingException;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import org.testng.Assert;
+public class LoginStepDef {
+
+	private WebDriver driver;
+	private String email;
+	private String pass;
+	
+	@Before
+	public void setup(){
+		System.setProperty("webdriver.chrome.driver", "/home/natalia/chromedriver");
+
+		driver = new ChromeDriver();
+		  
+	}
+	
+	@Given("^my credentials \"([^\"]*)\" with password \"([^\"]*)\"$")
+	public void my_credentials_with_password(String arg1, String arg2) throws Exception {
+		email = arg1;
+		pass = arg2;
+	}
+
+	@When("^i log into the application$")
+	public void i_log_into_the_application() throws Exception {
+		driver.get("http://0.0.0.0:5000/login/");
+		driver.findElement(By.id("email")).sendKeys(email);
+		driver.findElement(By.id("password")).sendKeys(pass);
+		driver.findElement(By.id("btn-submit")).click();;
+	}
+
+	@Then("^the message \"([^\"]*)\" should appear$")
+	public void the_message_should_appear(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		
+		Assert.assertEquals(driver.findElement(By.id("content_title")).getText(), "Welcome to Effective Testing!");
+	    //throw new PendingException();
+	}
+}

@@ -1,0 +1,7 @@
+Feature:entries
+	Scenario:successful login
+		Given my entries
+		When i select the entry "test title"
+		Then i see the entry form
+		
+		

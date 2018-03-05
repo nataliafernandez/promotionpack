@@ -1,0 +1,37 @@
+package com.effectivetesting.promotionpackage;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+
+public class LoginStepDef {
+
+	private String email;
+	private String pass;
+	private LoginPage login;
+	WebDriver driver = Browser.getDriver();
+    
+	@Given("^my credentials \"([^\"]*)\" with password \"([^\"]*)\"$")
+	public void my_credentials_with_password(String arg1, String arg2) throws Exception {
+		email = arg1;
+		pass = arg2;
+		
+	}
+
+	@When("^i log into the application$")
+	public void i_log_into_the_application() throws Exception {
+		login = new LoginPage();
+		login.fillCred(email, pass);
+	}
+
+	@Then("^the message \"([^\"]*)\" should appear$")
+	public void the_message_should_appear(String arg1) throws Exception {
+		Assert.assertEquals(driver.findElement(By.cssSelector("#content_title > h1")).getText(), arg1);
+	}
+
+}
