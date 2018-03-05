@@ -17,7 +17,7 @@ public class FormStepDef {
 	public void my_entry_form() throws Exception {
 		login = new LoginPage();
 		login.fillCred("admin1@gmail.com", "admin1");
-		driver.get("http://0.0.0.0:5000/entries/first-entry/");
+		driver.get("http://0.0.0.0:5000/entries/test-title/");
 		
 	}
 
